@@ -73,7 +73,7 @@ requirements = [
     "torchvision>=0.14.1",
     "wget>=3.2",
     "scikit-image>=0.19.3",
-    "numpy>=2.0.1",
+    "numpy<2",
     "tqdm>=4.64.1",
     "yacs>=0.1.8",
     "numba>=0.60.0",
@@ -83,7 +83,7 @@ requirements = [
 
 setup(
     name="hcat",
-    version="2.0.0",
+    version="2.0.1",
     packages=find_packages(),
     # ext_modules=cythonize(
     #     get_ext_paths("hcat", EXCLUDE_FILES),
