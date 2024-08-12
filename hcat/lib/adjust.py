@@ -23,5 +23,5 @@ def _adjust(img, brightness, contrast):
     contrast = 10 ** (contrast / 200)
     # img = (img * contrast) + brightness
     out = np.zeros_like(img)
-    np.round_((img * contrast) + brightness, 0, out)  # cant have keywrods with round...
+    np.round((img * contrast) + brightness, 0, out)  # cant have keywrods with round...
     return out.clip(0, 255).astype(np.uint8)

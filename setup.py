@@ -73,26 +73,27 @@ requirements = [
     "torchvision>=0.14.1",
     "wget>=3.2",
     "scikit-image>=0.19.3",
-    "numpy>=1.23.5",
+    "numpy>=2.0.1",
     "tqdm>=4.64.1",
     "yacs>=0.1.8",
-    "numba>=0.54.4",
-    "Cython>=3.0.0b3"
+    "numba>=0.60.0",
+    "Cython>=3.0.0b3",
+    "requests"
 ]
 
 setup(
     name="hcat",
     version="2.0.0",
     packages=find_packages(),
-    ext_modules=cythonize(
-        get_ext_paths("hcat", EXCLUDE_FILES),
-        compiler_directives={
-            "language_level": 3,
-            "always_allow_keywords": True,
-            "annotation_typing": False,
-        },
-    ),
-    cmdclass={"build_py": build_py, "bdist_wheel": CommandBdistWheel},
+    # ext_modules=cythonize(
+    #     get_ext_paths("hcat", EXCLUDE_FILES),
+    #     compiler_directives={
+    #         "language_level": 3,
+    #         "always_allow_keywords": True,
+    #         "annotation_typing": False,
+    #     },
+    # ),
+    # cmdclass={"build_py": build_py, "bdist_wheel": CommandBdistWheel},
     entry_points={"console_scripts": ["hcat = hcat.__main__:launch"]},
     install_requires=requirements,
 )

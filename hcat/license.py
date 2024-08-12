@@ -4,7 +4,7 @@ def get_license():
     The Prosperity Public License 3.0.0
 Contributor: Christopher Buswinka
 
-Source Code: https://github.com/hcatapp/hcat
+Source Code: https://github.com/buswinka/hcat
 
 Purpose
 
