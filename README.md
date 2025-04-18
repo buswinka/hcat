@@ -5,7 +5,7 @@ Originally shipping with a small graphical user interface, we have vastly improv
 
 This gui comes with an important new feature - the ability to perform automated detection on multi piece dissections!
 
-To find a copy of the new user manual, see here: [User Manual](https://www.dropbox.com/scl/fi/eomc3gujrmm4u4enavjo0/hcat_user_manual.pdf?rlkey=l54z2opwvbovu1tp0i6cmh6ht&dl=0)
+To find a copy of the new user manual, see here: [User Manual](https://www.dropbox.com/scl/fi/eomc3gujrmm4u4enavjo0/hcat_user_manual.pdf?rlkey=l54z2opwvbovu1tp0i6cmh6ht&dl=1)
 
 ### Quickstart Guide:
 
