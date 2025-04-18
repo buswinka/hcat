@@ -9,6 +9,8 @@ import hcat.lib.io
 from hcat.state import Cochlea, Piece
 from hcat.widgets.push_button import WPushButton
 
+import os
+
 
 # TODO add a final import button which returns each to the main app.
 # TODO add a cancel button which just aborts the whole thing...
@@ -123,6 +125,12 @@ class ImportImageWidget(QWidget):
         self.update_button = WPushButton('UPDATE')
         self.update_button.setToolTip('Saves updates to piece metadata')
 
+        self.timeseries_checkbox = QCheckBox('Timeseries Import')
+        self.timeseries_checkbox.setChecked(False)
+
+        if not os.environ.get('ENABLE_HCAT_DEV', False):
+            self.timeseries_checkbox.hide()
+
 
         # Required Metadata
         self.px_size_input = QSpinBox()
@@ -130,7 +138,7 @@ class ImportImageWidget(QWidget):
         self.piece_ordering_input = QSpinBox()
         self.piece_ordering_input.setMaximum(0)
         self.animal_selector = QComboBox()
-        self.animal_selector.addItems(['Mouse'])
+        self.animal_selector.addItems(['Mouse', 'Cat', 'Chinchilla', 'Rhesys Monkey', 'Guinea Pig'])
 
         # Optional Metadata
         self.red_channel_label = QLineEdit()
@@ -149,7 +157,6 @@ class ImportImageWidget(QWidget):
         self.enableUpdateButton(False)
         self.enableImportButton(False)
         # self.set_button_heights(16)
-
 
         # DEBUG
         # self._debug_create_candidate('/Users/chrisbuswinka/Pictures/1 - tJK66LE.jpg')
@@ -229,6 +236,7 @@ class ImportImageWidget(QWidget):
 
         right_layout.addWidget(required_group)
         right_layout.addWidget(optional_group)
+        right_layout.addWidget(self.timeseries_checkbox)
         right_layout.addLayout(right_button_layout)
         right_layout.addStretch(1)
 
@@ -715,10 +723,14 @@ class ImportImageWidget(QWidget):
         """ both adds and removes """
         self.update_pieces_from_candidates()
         new_pieces = []
-        for candidate in self.candidate_pieces:
-            print(candidate)
-            if not candidate['from_piece']:
-                new_pieces.append(self._piece_from_candidate(candidate))
+        if not self.timeseries_checkbox.isChecked():
+            for candidate in self.candidate_pieces:
+                if not candidate['from_piece']:
+                    new_pieces.append(self._piece_from_candidate(candidate))
+        else: # treat everything as a timeseries
+            raise NotImplementedError('timeseries not done')
+
+
 
         removed_pieces = []
         for key, piece in self.state.children.items():

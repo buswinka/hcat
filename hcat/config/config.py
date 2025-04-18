@@ -12,15 +12,15 @@ _C = CN()
 _C.MODEL = CN()
 
 _C.TRAIN = CN()
-_C.TRAIN.LEARNING_RATE = 1e-4  # any float
-_C.TRAIN.WEIGHT_DECAY = 1e-4  # any float
+_C.TRAIN.LEARNING_RATE = 1e-4   # any float, use log scale, start on this value
+_C.TRAIN.WEIGHT_DECAY = 1e-4    # any float, use log scale, start on this value
 _C.TRAIN.OPTIMIZER = 'adamw'  # could also do 'adam', 'sgd', 'sgdm'
-_C.TRAIN.SCHEDULER = 'cosine_annealing'
+_C.TRAIN.SCHEDULER = 'cosine_annealing' # this is the only option
 _C.TRAIN.N_EPOCHS = 300 # any integer
-_C.TRAIN.TRAIN_DIR = []
-_C.TRAIN.VALIDATION_DIR = []
-_C.TRAIN.MIXED_PRECISION=True
-_C.TRAIN.SAVE_PATH = ''
+_C.TRAIN.TRAIN_DIR = []  # button which selects multiple folders and finds pairs of images, *pngs and *xml files with the same name
+_C.TRAIN.VALIDATION_DIR = []  # same as above
+_C.TRAIN.SAVE_PATH = '' # button that selects a folder and saves its path
+_C.TRAIN.MIXED_PRECISION = False # button that selects a folder and saves its path
 
 
 _C.EVAL = CN()

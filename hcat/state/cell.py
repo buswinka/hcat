@@ -21,6 +21,7 @@ class Cell(StateItem):
         self.type = type
         self.frequency = frequency
         self.percentage_total_length = None
+        self.distance_from_base_in_nm = None
         self.mask_verticies = mask_verticies
         self.bbox: List[int] = bbox
         self.rotation = None
@@ -73,6 +74,9 @@ class Cell(StateItem):
 
     def set_percentage(self, percentage: float):
         self.percentage_total_length = percentage
+
+    def set_distance(self, distance_in_nm: float):
+        self.distance_from_base_in_nm = distance_in_nm
 
     def set_frequency(self, frequency: float):
         self.frequency = frequency

@@ -76,14 +76,15 @@ requirements = [
     "numpy<2",
     "tqdm>=4.64.1",
     "yacs>=0.1.8",
-    "numba>=0.60.0",
+    "numba>=0.54.0",
     "Cython>=3.0.0b3",
-    "requests"
+    "requests",
+    "imagecodecs"
 ]
 
 setup(
     name="hcat",
-    version="2.0.1",
+    version="2.0.4",
     packages=find_packages(),
     # ext_modules=cythonize(
     #     get_ext_paths("hcat", EXCLUDE_FILES),

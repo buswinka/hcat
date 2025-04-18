@@ -84,7 +84,7 @@ def closest_point(
 
 def tonotopy_to_percentage(
     curves: List[List[Tuple[float, float]]], px_sizes: List[float]
-) -> List[List[float]]:
+) -> Tuple[List[List[float]], float]:
     """
     Calculates a total percentage of the distance the cochleae represent
 
@@ -130,7 +130,7 @@ def tonotopy_to_percentage(
         _per = [0.0] + _per
         percentages.append(_per)
 
-    return percentages
+    return percentages, total_length
 
 
 def coord_to_percentage(
@@ -169,7 +169,10 @@ def calculate_frequency(distance_percentage: float, animal: Animal) -> float:
     :param animal: animal enum from hcat.lib.animal
     :return: frequency in Hz
     """
-    return animal.A * (10 ** ((1 - distance_percentage) * animal.B) - animal.K)
+    if animal.FN is None:
+        return animal.A * (animal.BASE ** ((1 - distance_percentage) * animal.B) - animal.K)
+    else:
+        return animal.FN(distance_percentage)
 
 
 if __name__ == "__main__":

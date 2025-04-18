@@ -42,6 +42,7 @@ class Piece(StateItem):
         super(Piece, self).__init__(id=id, parent=parent, score=1.0)
 
         self.image = image
+        self.timeseries = []
         self.sha256_hash_of_image: str = sha256(image.data).hexdigest()
         self.tree_item = TreeWidgetItem((f"Piece",), index=self.id)
         self.tree_item.setFlags(self.tree_item.flags() | Qt.ItemIsEditable)
@@ -117,6 +118,13 @@ class Piece(StateItem):
     # self.stain_label: Dict[str, str | None] = {'red': None, 'green': None, 'blue': None}
     # self.animal: str | None = None
     # self.relative_order: int | None = None
+
+    def set_timeseries(self, timeseries: List[np.ndarray]):
+        self.timeseries = timeseries
+        return self
+
+    def get_timeseries(self):
+        return self.timeseries
 
     def set_xy_pixel_size(self, size: int):
         self.pixel_size_xy = size

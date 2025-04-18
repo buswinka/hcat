@@ -88,8 +88,8 @@ def array_to_base64(array) -> str:
 def export_to_csv(cochlea: Cochlea, filepath: str):
     header_0 = f'SAVE LOCATION: {filepath}\n'
     header_1 = f'SAVE TIME {datetime.datetime.now().strftime("(YYYY/MM/DD HH:MM:SS): %Y/%m/%d %H:%M:%S")}\n'
-
-    keys = 'state_item,object_id,cell_type,frequency,score,bbox_x0,bbox_y0,bbox_x1,bbox_y1,center_x,center_y,' \
+    print('EXPORTING!')
+    keys = 'state_item,object_id,cell_type,frequency,percentage,distance(nm),score,bbox_x0,bbox_y0,bbox_x1,bbox_y1,center_x,center_y,' \
              'filename,piece_id,line_to_path,piece_relative_order,pixel_size_xy,piece_name,image_dtype,image_shape,image_sha256,' \
              'microscopy_type,microscopy_objective,animal,frequency_path,basal_frequency,apical_freqeucny,' \
              'creator,was_edited,is_ground_truth,channel_0_stain_label,channel_1_stain_label,channel_2_stain_label,channel_0_stain_color,' \
@@ -127,6 +127,8 @@ def export_to_csv(cochlea: Cochlea, filepath: str):
                 identifier = str(c.id).replace(',', ' ')
                 cell_type = str(c.type).replace(',', ' ')
                 frequency = str(c.frequency).replace(',', ' ')
+                percentage=str(c.percentage_total_length).replace(',', ' ')
+                distance=str(c.distance_from_base_in_nm).replace(',', ' ')
                 creator = str(c.get_creator()).replace(',', ' ')
                 was_edited = str(c.was_edited()).replace(',', ' ')
                 score = str(c.score).replace(',', ' ')
@@ -144,7 +146,7 @@ def export_to_csv(cochlea: Cochlea, filepath: str):
                 c2c = _adjust[2]['contrast'] if _adjust is not None else 'ERROR'
 
 
-                row = f'{state_item},{identifier},{cell_type},{frequency},{score},{x0},{y0},{x1},{y1},{cx},{cy},' \
+                row = f'{state_item},{identifier},{cell_type},{frequency},{percentage},{distance},{score},{x0},{y0},{x1},{y1},{cx},{cy},' \
                       f'{filename},{piece_id},{line_to_path},{relative_order},{px_size},{piece_name},{image_dtype},{image_shape},{image_sha},' \
                       f'{microscope_type},{microscope_zoom},{animal},{freq_path},{basal_freq},{apical_freq},' \
                       f'{creator},{was_edited},{is_ground_truth},{channel_0_stain_label},{channel_1_stain_label},{channel_2_stain_label},{"(255 0 0)"},' \

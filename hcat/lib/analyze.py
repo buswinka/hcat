@@ -80,7 +80,7 @@ def assign_frequency(state_item: Cochlea | Piece | Cell) -> Cochlea:
         interpolate_path(p.freq_path) for p in pieces
     ]
 
-    percentages: List[List[float]] = tonotopy_to_percentage(
+    percentages, total_length = tonotopy_to_percentage(
         paths, px_sizes=[p.pixel_size_xy for p in pieces]
     )
 
@@ -107,6 +107,7 @@ def assign_frequency(state_item: Cochlea | Piece | Cell) -> Cochlea:
                 coordinate=c.get_cell_center(), path=path, percentage=percentage
             )
             c.set_percentage(cell_percent)
+            c.set_distance(cell_percent * total_length)
             freq = calculate_frequency(cell_percent, animal_map[piece.animal.lower()])
             c.set_frequency(freq)
 

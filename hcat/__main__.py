@@ -40,8 +40,8 @@ def launch():
     icon = QIcon(':/resources/icon.ico')
     app.setWindowIcon(icon)
     app.setApplicationDisplayName('hcat')
-    app.setApplicationVersion('v2023.06.02')
-    app.setOrganizationName('Buswinka CG LCC')
+    app.setApplicationVersion('v2024.08.13')
+    app.setOrganizationName('Chris Buswinka and Artur Indzhykulian')
 
     QFontDatabase.addApplicationFont(':/fonts/OfficeCodePro-Bold.ttf')
     QFontDatabase.addApplicationFont(':/fonts/OfficeCodePro-Regular.ttf')
@@ -97,7 +97,7 @@ mainWindow->show();
     x = (w - imageViewer.width())/2
     y = (h - imageViewer.height())/2
     imageViewer.move(x, y)
-    imageViewer.setWindowTitle('hcat-v0.0.1')
+    imageViewer.setWindowTitle('hcat-v2.0.1')
     imageViewer.show()
     splash.finish(imageViewer)
     sys.exit(app.exec())

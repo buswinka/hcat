@@ -522,6 +522,8 @@ class PieceViewerWidget(QWidget):
         sets the active piece of the image viewer.
         is supposed to be called outside this widget!
         """
+        if piece is None:
+            return
 
         scale = copy(self.scale)
         self.active_piece = piece
@@ -1419,7 +1421,6 @@ class PieceViewerWidget(QWidget):
 
             window = self.getCurrentWindowCoords()
             cells = [c for c in cells if c.is_visible(window)]
-
 
             p = self.painter
             font = QFont()
